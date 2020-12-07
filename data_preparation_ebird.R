@@ -6,7 +6,11 @@
 ############################################################################
 
 data_preparation_ebird <- function(EBD = "ebd_TW_relMar-2020", 
-                                   path = here("data", "main_processed_20201116", "data_eBird_qualified.csv")){
+                                   path = here("data", "main_processed_20201116", "data_eBird_qualified.csv"),
+                                   start_year = 2015,
+                                   effort_max_distance = 5,
+                                   effort_max_duration = 300,
+                                   effort_max_observers = 10){
   data <- fread(file = here("data", "Taiwan_ebd", EBD, paste0(EBD, ".txt")), 
               encoding = "UTF-8",
               select = c(1:6, 9, 15, 16, 24:40),
@@ -24,23 +28,13 @@ data_preparation_ebird <- function(EBD = "ebd_TW_relMar-2020",
            observation_count = observation_count %>% as.numeric(),
            filt = paste0(common_name, group_identifier)) 
   rm(data)
- 
-  # data_filtered <- data_cleaned %>%
-  #   filter(year >= 2015,
-  #          protocol_type == "Traveling" | protocol_type == "Stationary" | protocol_type == "Area",
-  #          all_species_reported == 1,
-  #          effort_distance_km <= 10 | effort_area_ha <= 5626,
-  #          duration_minutes <= 1440) %>%
-  #   drop_na("time_observations_started", "duration_minutes", "protocol_type", "number_observers", "effort_distance_km", "observation_count") %>%
-  #   filter(group_identifier == "" | !duplicated(filt)) %>%
-  #   dplyr::select(-31)
 
   data_filtered <- data_cleaned %>%
-    filter(year >= 2015,
-           protocol_type == "Traveling" & effort_distance_km <= 5,
+    filter(year >= start_year,
+           protocol_type == "Traveling" & effort_distance_km <= effort_max_distance,
            all_species_reported == 1,
-           duration_minutes <= 300,
-           number_observers <= 10) %>%
+           duration_minutes <= effort_max_duration,
+           number_observers <= effort_max_observers) %>%
     drop_na("observation_count", "time_observations_started", "longitude", "latitude", "protocol_type", "duration_minutes", "number_observers") %>%
     filter(group_identifier == "" | !duplicated(filt)) %>%
     dplyr::select(-"filt")
