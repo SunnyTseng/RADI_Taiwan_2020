@@ -1,10 +1,11 @@
 # RADI_Taiwan_2020
 
-RADI_Taiwan is a project aiming to create avian species distribution maps using eBird data. The method was adapted from Status and Trends products by Cornell Lab of Ornithology (Fink et al., 2020).
+RADI_Taiwan is a project aiming to create avian species distribution maps using eBird data. The method was adapted from Status and Trends products by Cornell Lab of Ornithology ([Fink et al., 2020](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/eap.2056)).
 
-## Usage
+## Products
 
 
+## Workflow
 
 
 ## Directory Structure
@@ -22,11 +23,6 @@ RADI_Taiwan is a project aiming to create avian species distribution maps using 
 |  |- prediction_maps.r
 |  |- integrated.r
 ```
-
-
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. 
 
 
 ## Functions documentation
@@ -119,17 +115,7 @@ Create and save prediction surfaces, specifically the empty maps of Taiwan (tif 
 #### **Value**
 A dataset and a tif file as predictor surfaces. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ***
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Please contact the author (sunnyyctseng@gamil.com) for any comments on the project.
