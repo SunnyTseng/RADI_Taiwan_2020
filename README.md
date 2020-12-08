@@ -6,11 +6,28 @@ RADI_Taiwan is a project aiming to create avian species distribution maps using 
 
 
 
-## File structure
+
+## Directory Structure
+``` bash
+|- README.md
+|- .here
+|- R
+|  |- data_preparation_ebird.r
+|  |- data_preparation_predictors.r
+|  |- data_preparation_prediction_surface.r
+|  |- data_preparation_target_species.r
+|  |- modelling_random_forest.r
+|  |- modelling_stixel_grouping.r
+|  |- modelling_GAM.r
+|  |- prediction_maps.r
+|  |- integrated.r
+```
 
 
 
-## Main References 
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. 
+
 
 ## Functions documentation
 
@@ -116,29 +133,3 @@ A dataset and a tif file as predictor surfaces.
 
 
 ***
-
-## Installation
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-```bash
-pip install foobar
-```
-
-## Usage
-
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
