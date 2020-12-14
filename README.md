@@ -3,10 +3,10 @@
 RADI_Taiwan is a project aiming to create avian species distribution maps using eBird data. The method was adapted from Status and Trends products by Cornell Lab of Ornithology ([Fink et al., 2020](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/eap.2056)).
 
 ## Products
-
+static data distribution to the animation
 
 ## Workflow
-
+workflow corresponding to each of the functions
 
 ## Directory Structure
 ``` bash
@@ -97,23 +97,25 @@ A dataset and a tif file as predictor surfaces.
 
 
 ***
-### **data_preparation_prediction_surface**
+### **data_preparation_target_species**
 ```R
-data_preparation_prediction_surface(dir_tiff = here("data", "Taiwan_environmental_dataset-master", "GeoTIFF_unzip"),
-                                    path_data_frame = here("data", "main_processed", "prediciton_surface.csv"),
-                                    path_tif = here("data", "main_processed", "prediction_surface.tif"))
+data_preparation_target_species(dir_eBird = here("data", "main_processed", "data_eBird_qualified.csv"),
+                                dir_predictors = here("data", "main_processed", "data_eBird_qualified_prodictors.csv"),
+                                target_species,
+                                path = here("data", "main_processed", paste0("data_eBird_qualified_combined_", target_species, ".csv")))
 ```
  Argument |  --
 --- | --- 
-dir_tiff | character, file path of the folder that contains GIS .tif files
-path_data_frame | character, file path and name with .csv extension for saving the resulted dataset
-path_tif | character, file path and name with .tif extension for saving the resulted dataset
+dir_eBird | character, file path of the dataset output from data_preparation_eBird
+dir_predictors | character, file path of the dataset output from data_preparation_predictors
+target_species | character, species of interest in latin name
+path | character, path and name with .csv extension for saving the resulted dataset
 
 #### **Description**
-Create and save prediction surfaces, specifically the empty maps of Taiwan (tif file). Create and save a dataframe containing predictors corresponding to each of the pixels. 
+Combine the eBird and predictors dataset for a target species. The output dataset will be used in the following analysis.
 
 #### **Value**
-A dataset and a tif file as predictor surfaces. 
+A dataset with eBird observation and the corresponded environmental predictors. The dataset will be ready for the following analysis. 
 
 ***
 
