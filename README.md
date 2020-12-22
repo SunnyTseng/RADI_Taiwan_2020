@@ -20,6 +20,7 @@ workflow corresponding to each of the functions
 |  |- modelling_random_forest.r
 |  |- modelling_stixel_grouping.r
 |  |- modelling_GAM.r
+|  |- modelling_evaluation.r
 |  |- prediction_maps.r
 |  |- integrated.r
 ```
