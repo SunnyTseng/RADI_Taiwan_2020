@@ -117,6 +117,94 @@ Combine the eBird and predictors dataset for a target species. The output datase
 #### **Value**
 A dataset with eBird observation and the corresponded environmental predictors. The dataset will be ready for the following analysis. 
 
+
+***
+### **modelling_random_forest**
+```R
+modelling_random_forest(data = data_sub,
+                        method = "ranger",
+                        cor_threshold = 0.8,
+                        max_vars = 15)
+```
+ Argument |  --
+--- | --- 
+data | object, subsampled data for variables selection
+method | character, method for the random forest, can choose `Boruta` or `ranger`
+cor_threshold | numerical, the upper limit of correlation between variables
+max_vars | numerical, initial 
+
+#### **Description**
+Variables selection out of the 100 environmental variables using random forest. 
+
+#### **Value**
+A vector of variables that best describe the variations in the data. 
+
+***
+### **modelling_stixel_grouping**
+```R
+modelling_stixel_grouping(data = data_sub,
+                          predictors = predictors,
+                          split = 0.8,
+                          temporal_resolution = 7,
+                          stixel_height = 40)
+```
+ Argument |  --
+--- | --- 
+data | object, subsampled data for model fitting
+predictors | character, predictors that used in each of the model
+split | numerical, the proportion of the data used for training purpose
+temporal_resolution | numerical, the temporal shift of the stixel in days
+stixel_height | numerical, the temporal scale of the stixel in days
+
+#### **Description**
+Re-format the data struction. Split the data into training and test dataset, then further split into stixels.
+
+#### **Value**
+A re-structured dataset ready for model fitting.
+
+***
+### **modelling_GAM**
+```R
+modelling_GAM(stixels = stixels, 
+              family = "nb", 
+              predictors = predictors, 
+              workers = 1)
+              
+```
+ Argument |  --
+--- | --- 
+stixels | object, re-arranged data for model fitting, output from `modelling_stixel_grouping`
+family | character, family for the GAM model, options are `nb` or `ziplss`
+predictors | character, predictors that used in each of the model
+workers | numerical, number of CPUs used for the model fitting task
+
+#### **Description**
+Fit the model for each of the stixel
+
+#### **Value**
+A new data frame consisting models for each of the  stixel
+
+***
+### **modelling_evaluation**
+```R
+modelling_evaluation(models = models, 
+                     family = "nb", 
+                     workers = 2)
+              
+```
+ Argument |  --
+--- | --- 
+models | object, models fitted in `modelling_GAM`
+family | character, family for the GAM model, options are `nb` or `ziplss`
+workers | numerical, number of CPUs used for the model fitting task
+
+#### **Description**
+Evaluate the goodness of fit of the 53 models
+
+#### **Value**
+A new data frame consisting the evaluation result
+
+
 ***
 
 ## Contributing
