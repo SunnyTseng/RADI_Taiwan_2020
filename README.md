@@ -234,10 +234,11 @@ quantile | numerical, the lower limit threshold (in percentage) for plotting the
 
 
 #### **Description**
-Evaluate the goodness of fit of the 53 models
+Produce maps out of the fitted GAM models.
 
 #### **Value**
-A new data frame consisting the evaluation result
+A list of maps corresponding to each of the fitted model.
+
 ***
 
 ## Contributing
