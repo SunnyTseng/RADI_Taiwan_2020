@@ -204,7 +204,40 @@ Evaluate the goodness of fit of the 53 models
 #### **Value**
 A new data frame consisting the evaluation result
 
+***
+### **prediction_maps**
+```R
+prediction_maps(models = models,
+                family = "nb",
+                workers = 8,
+                duration_minutes = 60,
+                effort_distance_km = 1,
+                number_observers = 1,
+                hour = 6,
+                dir_pred_surf = here("data", "main_processed", "prediciton_surface.csv"),
+                dir_pred_tif = here("data", "main_processed", "prediction_surface.tif"),
+                quantile = 0.1)
+              
+```
+ Argument |  --
+--- | --- 
+models | object, models fitted in `modelling_GAM`
+family | character, family for the GAM model, options are `nb` or `ziplss`
+workers | numerical, number of CPUs used for the mapping task
+duration_minutes | numerical, to standardize the research effort
+effort_distance_km | numerical, to standardize the research effort 
+number_observers | numerical, to standardize the research effort
+hour | numerical, starting time of the observation to standardize the research effort
+dir_pred_surf | character, path and file name of the prediction surface
+dir_pred_tif | character, path and file name of the prediction surface in tif
+quantile | numerical, the lower limit threshold (in percentage) for plotting the maps
 
+
+#### **Description**
+Evaluate the goodness of fit of the 53 models
+
+#### **Value**
+A new data frame consisting the evaluation result
 ***
 
 ## Contributing
