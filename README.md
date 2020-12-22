@@ -6,7 +6,10 @@ RADI_Taiwan is a project aiming to create avian species distribution maps using 
 static data distribution to the animation
 
 ## Workflow
-workflow corresponding to each of the functions
+The following two diagrams are demonstrating the usage of the functions and the general workflow in this project. 
+
+![Data Preparation](workflow_data_preparation.png)
+![Modelling and Prediction](workflow_modelling_prediction.png)
 
 ## Directory Structure
 ``` bash
