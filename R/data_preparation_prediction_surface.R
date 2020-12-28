@@ -20,7 +20,7 @@ data_preparation_prediction_surface <- function(dir_tiff = here("data", "Taiwan_
         
     pred_surf <- geo_tiff_3826[1] %>% raster() %>% rasterToPoints() %>% as_tibble()
     for(i in 2:100){
-      value_3826 <- geo_tiff_3826[2] %>% raster() %>% rasterToPoints() %>% as_tibble()
+      value_3826 <- geo_tiff_3826[i] %>% raster() %>% rasterToPoints() %>% as_tibble()
       pred_surf <- full_join(pred_surf, value_3826, by = c("x", "y"))
     }
 

@@ -38,7 +38,7 @@ modelling_random_forest <- function(data = data_sub,
                importance = "impurity",
                probability = TRUE,
                replace = TRUE,
-               sample.fraction = c(detection_freq))
+               sample.fraction = c(detection_freq, detection_freq))
     
     pi <- enframe(rf$variable.importance, "predictor", "importance") %>%
       arrange(desc(importance)) 

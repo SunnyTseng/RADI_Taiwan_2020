@@ -86,16 +86,12 @@ data_preparation_target_species(dir_eBird = here("data", "processed", "data_eBir
 ### Variable selection ###
 ##########################
 
-target_species <- "Myiomela leucura"
+target_species <- "Heterophasia auricularis"
 
 # import data
 
-
-target_species <- "Myiomela leucura"
 data <- read_csv(here("data", "processed", target_species,
                       paste0("data_eBird_qualified_combined_", target_species, ".csv")))
-
-data <- read_csv(here("data", "processed", target_species, paste0("data_eBird_qualified_combined_", target_species, ".csv")))
 
 data <- data %>%
   mutate(detection = detection %>% as.factor(),
@@ -132,7 +128,7 @@ stixels <- modelling_stixel_grouping(data = data_sub,
 ### Model training and testing ###
 ##################################
 
-nb <- modelling_GAM(stixels = stixels, family = "nb", predictors = predictors, workers = 16)
+nb <- modelling_GAM(stixels = stixels %>% head(1), family = "nb", predictors = predictors, workers = 16)
 ziplss <- modelling_GAM(stixels = stixels, family = "ziplss", predictors = predictors, workers = 16)
 models <- inner_join(nb, ziplss %>% select(day_of_year, m_ziplss), by = "day_of_year")
 rm(nb)
