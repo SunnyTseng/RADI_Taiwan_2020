@@ -8,7 +8,7 @@
 data_preparation_target_species <- function(dir_eBird = here("data", "main_processed", "data_eBird_qualified.csv"),
                                             dir_predictors = here("data", "main_processed", "data_eBird_qualified_predictors.csv"),
                                             target_species,
-                                            path = here("data", "main_processed", paste0("data_eBird_qualified_combined_", target_species, ".csv"))){
+                                            path){
   data_eBird <- read_csv(dir_eBird)
   data_predictors <- read_csv(dir_predictors)
   
@@ -105,4 +105,6 @@ data_preparation_target_species <- function(dir_eBird = here("data", "main_proce
   rm(data_no_detection)
   
   write_csv(data, path)
+  
+return(NULL)
 }

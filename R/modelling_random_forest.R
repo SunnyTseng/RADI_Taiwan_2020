@@ -22,7 +22,7 @@ modelling_random_forest <- function(data = data_sub,
 
   if (method == "Boruta") {
     rf <- Boruta(formula = detection ~ ., data = data_sub_rf)
-    pi <- test %>%
+    pi <- rf %>%
       TentativeRoughFix() %>%
       attStats() %>%
       as.data.frame() %>%
@@ -38,7 +38,7 @@ modelling_random_forest <- function(data = data_sub,
                importance = "impurity",
                probability = TRUE,
                replace = TRUE,
-               sample.fraction = c(detection_freq, detection_freq))
+               sample.fraction = c(detection_freq))
     
     pi <- enframe(rf$variable.importance, "predictor", "importance") %>%
       arrange(desc(importance)) 

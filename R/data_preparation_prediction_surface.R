@@ -25,7 +25,7 @@ data_preparation_prediction_surface <- function(dir_tiff = here("data", "Taiwan_
     }
 
     names(pred_surf)[c(-1, -2)] <- geo_tiff_3826 %>%
-      str_extract(pattern = "(?<=[:digit:]_).+.(?=\\.)") %>%
+      str_extract(pattern = "(?<=121_).+.(?=\\.)") %>%
       make_clean_names()
 
     write_csv(pred_surf, path_data_frame)
