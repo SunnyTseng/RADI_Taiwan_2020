@@ -78,15 +78,15 @@ data_preparation_prediction_surface(dir_tiff = here("data", "raw", "Taiwan_envir
 
 data_preparation_target_species(dir_eBird = here("data", "processed", "data_eBird_qualified.csv"),
                                dir_predictors = here("data", "processed", "data_eBird_qualified_predictors.csv"),
-                               target_species = "Heterophasia auricularis",
-                               path = here("data", "processed", paste0("data_eBird_qualified_combined_", "Heterophasia auricularis", ".csv")))
+                               target_species = "Hirundo rustica",
+                               path = here("data", "processed", paste0("data_eBird_qualified_combined_", "Hirundo rustica", ".csv")))
 
 
 ##########################
 ### Variable selection ###
 ##########################
 
-target_species <- "Heterophasia auricularis"
+target_species <- "Hirundo rustica"
 
 # import data
 
@@ -128,7 +128,7 @@ stixels <- modelling_stixel_grouping(data = data_sub,
 ### Model training and testing ###
 ##################################
 
-nb <- modelling_GAM(stixels = stixels %>% head(1), family = "nb", predictors = predictors, workers = 16)
+nb <- modelling_GAM(stixels = stixels, family = "nb", predictors = predictors, workers = 16)
 ziplss <- modelling_GAM(stixels = stixels, family = "ziplss", predictors = predictors, workers = 16)
 models <- inner_join(nb, ziplss %>% select(day_of_year, m_ziplss), by = "day_of_year")
 rm(nb)
@@ -156,9 +156,9 @@ models_map_nb <- prediction_maps(models = nb,
 ### Abundance maps
 for(i in 1:53){
   png(here("data", "processed", target_species,
-           paste0(target_species, "_abd_week_", i, ".png")), 
+           paste0(target_species, "_week_", i, ".png")), 
       res = 300, width = 3, height = 4, units = 'in')
-  print(models_map_ziplss$map_ziplss[[i]])
+  print(models_map_nb$map_nb[[i]])
   dev.off()
 }
 

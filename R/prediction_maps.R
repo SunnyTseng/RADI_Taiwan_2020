@@ -76,7 +76,7 @@ prediction_maps <- function(models = models,
                              scale_fill_gradientn(trans = "log",
                                                   colours = cols,
                                                   breaks = c(0, 2, 50),
-                                                  limits = c(from = from, to = 50)) +
+                                                  limits = c(from = from, to = 100)) +
                              #geom_sf(data = tw_county %>%
                              #          st_crop(xmin = 119, xmax = 123, ymin = 20, ymax = 26) %>%
                              #          st_transform(crs = 3826),
@@ -115,8 +115,8 @@ prediction_maps <- function(models = models,
                                        aes(x = x, y = y, fill = abd)) +
                              scale_fill_gradientn(trans = "log",
                                                   colours = cols,
-                                                  breaks = c(0, 2, 10),
-                                                  limits = c(from = from, to = 30)) +
+                                                  breaks = c(0, 2, 50),
+                                                  limits = c(from = from, to = 100)) +
                              #geom_sf(data = tw_county %>%
                              #          st_crop(xmin = 119, xmax = 123, ymin = 20, ymax = 26) %>%
                              #          st_transform(crs = 3826),
