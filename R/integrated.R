@@ -86,7 +86,7 @@ data_preparation_target_species(dir_eBird = here("data", "processed", "data_eBir
 ### Variable selection ###
 ##########################
 
-target_species <- "Hirundo rustica"
+target_species <- "Heterophasia auricularis"
 
 # import data
 
@@ -134,7 +134,7 @@ models <- inner_join(nb, ziplss %>% select(day_of_year, m_ziplss), by = "day_of_
 rm(nb)
 rm(ziplss) # Time difference of 29.26519 mins
 
-models_test <- modelling_evaluation(models = models, family = "nb", workers = 16) 
+models_test <- modelling_evaluation(models = nb, family = "nb", workers = 16) 
 
 
 #######################################
@@ -148,7 +148,7 @@ models_map_nb <- prediction_maps(models = nb,
                                  duration_minutes = 60,
                                  effort_distance_km = 1, 
                                  number_observers = 1, 
-                                 hour = 6,
+                                 hour = 7,
                                  dir_pred_surf = here("data", "processed", "prediciton_surface.csv"),
                                  dir_pred_tif = here("data", "processed", "prediction_surface.tif"),
                                  quantile = 0.2)
@@ -162,5 +162,3 @@ for(i in 1:53){
   dev.off()
 }
 
-save(predictors, models_test, models_map_nb, 
-     file = here("data", "processed", target_species, paste0(target_species, ".RData")))
